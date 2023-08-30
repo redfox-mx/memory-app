@@ -1,0 +1,10 @@
+<form>
+  <label id="username">Username: </label>
+  <input
+    for="username"
+    type="text"
+    placeholder="redfox-mx"
+    [ngModelOptions]="{standalone: true}"
+    [(ngModel)]="username" />
+  <button (click)="shouldClose()">Play</button>
+</form>

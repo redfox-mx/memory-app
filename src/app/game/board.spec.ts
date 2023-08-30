@@ -1,33 +1,5 @@
-import { generateBoard, multiply } from './board'
+import { generateBoard } from './board'
 import { Card } from './card'
-
-describe('multiply', () =>  {
-  const array = [1,2,3,4,5,6,7,8,9,10];
-
-  it('should create a new array', () => {
-    expect(multiply(1, array)).not.toBe(array);
-  })
-
-  it('should have n times lenght of original array', () => {
-    expect(multiply(2, array).length).toBe(array.length * 2);
-  })
-
-  it('should copy all elements in order', () => {
-    const isEqual = (source: Array<unknown>, target: Array<unknown>) => {
-      if(source.length !== target.length) return false
-
-      for(let i = 0; i < source.length; i++) {
-        if(source[i] !== target[i]) return false
-      }
-
-      return true;
-    }
-
-    const multiplied = multiply(2, array);
-    expect(isEqual(multiplied.slice(array.length), array)).toBeTruthy()
-    expect(isEqual(multiplied.slice(-array.length), array)).toBeTruthy()
-  })
-})
 
 describe('Generate Board', () => {
   const cards = createCards(10);
@@ -36,7 +8,21 @@ describe('Generate Board', () => {
     const board = generateBoard(cards);
     expect(board.length).toBe(cards.length * 2)
   })
+
+  it('should generate uniques id', () => {
+    const board = generateBoard(cards);
+    expect(hasUniqueId(board)).toBeTruthy();
+  })
 })
+
+function hasUniqueId(arr: { id: unknown }[]): boolean {
+  const ids = new Map();
+  for(const item of arr) {
+    if(ids.has(item.id)) return false;
+    ids.set(item.id, true);
+  }
+  return true;
+}
 
 function createCards(n: number) {
   const cards: Card[] =  []
@@ -44,7 +30,8 @@ function createCards(n: number) {
     cards.push({
       id: i.toString(),
       image: `image-${i}`,
-      state: 'default'
+      state: 'default',
+      name: ''
     })
   }
   return cards

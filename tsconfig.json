@@ -20,8 +20,8 @@
       "@memory/storage": [
         "src/app/storage"
       ],
-      "@memory/views/*": [
-        "src/app/views/*"
+      "@memory/components/*": [
+        "src/app/components/*"
       ]
     },
     "useDefineForClassFields": false,

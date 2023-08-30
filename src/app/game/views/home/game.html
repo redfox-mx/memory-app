@@ -1,0 +1,15 @@
+<main class="main md:container mx-auto pt-5">
+  <h1 class="text-2xl text-center pb-10">
+    Matches: {{ controller.matches }} - Errors: {{ controller.errors }}
+  </h1>
+  <ol class="flex flex-row flex-wrap gap-4 sm:gap-6 justify-evenly place-items-start">
+    <li *ngFor="let card of board" class="aspect-[3/4] h-28 sm:h-36 lg:h-40">
+      <app-card
+        (click)="selectCard(card)"
+        [name]="card.name"
+        [flipped]="card.state !== 'default'"
+        [src]="card.image">
+      </app-card>
+    </li>
+  </ol>
+</main>

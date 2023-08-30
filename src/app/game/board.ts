@@ -3,17 +3,10 @@ import { Card } from './card'
 
 export type Board = Card[]
 
-export function multiply<T>(n: number, arr: ReadonlyArray<T>): Array<T> {
-  const target: Array<T> = [];
-  for(let i = 0; i < n; i++) {
-    arr.forEach(e => target.push(e))
-  }
-  return target;
-}
-
 
 export function generateBoard(cards: Card[]): Board {
-  const board = [...cards, ...cards];
+  const newCards = cards.map(e => ({...e, id: e.id + '-copy'}))
+  const board = [...cards, ...newCards];
   return shuffle(board);
 }
 

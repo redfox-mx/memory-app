@@ -1,0 +1,31 @@
+:host {
+  perspective: 400px;
+}
+
+.card {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card--is-flipped {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+}
+
+.card__front-side,
+.card__back-side {
+  backface-visibility: hidden;
+}
+
+.card__front-side {
+  transform: rotateY( 180deg );
+}
+
+// custom size for mat-icon as back question sign
+mat-icon {
+  font-size: 4em;
+  width: 1em;
+  height: 1em;
+}
