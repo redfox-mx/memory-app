@@ -4,6 +4,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   test:
@@ -55,6 +57,15 @@ jobs:
           name: app
           path: dist
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v7
+
+      - name: Set deployment branch
+        id: page-branch
+        shell: bash
+        run: echo "branch=${${{ steps.branch-name.outputs.current_branch }}//\//-}" >> "$GITHUB_OUTPUT"
+
       - name: Publish to Cloudflare Page
         uses: cloudflare/pages-action@v1
         with:
@@ -62,3 +73,4 @@ jobs:
           accountId: 84be8452697fdfb6a844905b357a654f
           projectName: memory-app
           directory: dist
+          branch: ${{ steps.page-branch.outputs.branch }}
