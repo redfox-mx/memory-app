@@ -17,6 +17,7 @@
             "suffixes": [
               "Component",
               "Directive",
+              "Form",
               "View"
             ]
           }
