@@ -24,3 +24,12 @@ jobs:
       - uses: nrwl/nx-set-shas@v3
       - name: Install dependencies
         run: pnpm install
+      
+      - name: Lint step
+        run: npx nx affected -t lint --parallel=3
+
+      - name: Test Step
+        run: npx nx affected -t test --parallel=3 --configuration=ci
+
+      - name: Build step
+        run: npx nx affected -t build --parallel=3
