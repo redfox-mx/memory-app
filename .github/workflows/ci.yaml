@@ -61,12 +61,6 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v7
 
-      - name: Set deployment branch
-        id: page-branch
-        shell: bash
-        run: |
-            echo "branch=$(echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/')" >> "$GITHUB_OUTPUT"
-
       - name: Publish to Cloudflare Page
         uses: cloudflare/pages-action@v1
         with:
@@ -74,4 +68,5 @@ jobs:
           accountId: 84be8452697fdfb6a844905b357a654f
           projectName: memory-app
           directory: dist
-          branch: ${{ steps.page-branch.outputs.branch }}
+          branch: ${{ steps.branch-name.outputs.current_branch }}
+          wranglerVersion: '3'
