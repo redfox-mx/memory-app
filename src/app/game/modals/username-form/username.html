@@ -1,10 +1,18 @@
 <form>
-  <label id="username">Username: </label>
-  <input
+  <label
     for="username"
+    class="block font-medium mb-2"
+    >Username: </label>
+  <input
+    id="username"
     type="text"
-    placeholder="redfox-mx"
+    placeholder="amazingUser12"
+    class="py-3 px-4 block w-full mb-4 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500"
     [ngModelOptions]="{standalone: true}"
     [(ngModel)]="username" />
-  <button (click)="shouldClose()">Play</button>
+  <button
+    (click)="shouldClose()"
+    type="button"
+    class="w-full py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-medium bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
+    >Play</button>
 </form>

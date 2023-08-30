@@ -1,2 +1,5 @@
-<h1>Congratilations {{ userStorage.username }}. You win!!</h1>
-<button (click)="dialogRef.close(true)">Play again</button>
+<h1 class="text-xl mb-8"><span class="text-3xl">🎉</span>Congratulations <span class="font-semibold">{{ userStorage.username }}</span>. You win!</h1>
+<button
+  (click)="dialogRef.close(true)"
+  class="block ml-auto py-2 px-3 justify-center items-center gap-2 rounded-md border border-transparent font-medium bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
+>Play again</button>

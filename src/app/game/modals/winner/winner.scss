@@ -2,5 +2,5 @@
   display: block;
   background: #fff;
   border-radius: 8px;
-  padding: 8px 16px 16px;
+  @apply px-8 pt-10 pb-8;
 }
