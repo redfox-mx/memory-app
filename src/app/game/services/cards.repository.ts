@@ -24,7 +24,7 @@ export interface PartialCardsResponse {
 }
 
 export function amountOfCardFactory() {
-  return isDevMode() ? 3 : 20;
+  return isDevMode() ? 5 : 20;
 }
 
 /**
