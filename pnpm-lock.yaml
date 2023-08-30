@@ -103,6 +103,9 @@ devDependencies:
   '@schematics/angular':
     specifier: ~16.2.0
     version: 16.2.0
+  '@tailwindcss/forms':
+    specifier: ^0.5.6
+    version: 0.5.6(tailwindcss@3.0.2)
   '@types/jest':
     specifier: ^29.4.0
     version: 29.5.4
@@ -145,6 +148,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.5
     version: 8.4.27
+  preline:
+    specifier: ^1.9.0
+    version: 1.9.0
   tailwindcss:
     specifier: ^3.0.2
     version: 3.0.2(autoprefixer@10.4.14)(postcss@8.4.27)(ts-node@10.9.1)
@@ -4937,6 +4943,10 @@ packages:
     dev: true
     optional: true
 
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: true
+
   /@schematics/angular@16.2.0:
     resolution: {integrity: sha512-Ib0/ZCkjWt7a5p3209JVwEWwf41v03K3ylvlxLIEo1ZGijAZAlrBj4GrA5YQ+TmPm2hRyt+owss7x91/x+i0Gw==}
     engines: {node: ^16.14.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
@@ -4992,6 +5002,15 @@ packages:
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
     dependencies:
       '@sinonjs/commons': 3.0.0
+
+  /@tailwindcss/forms@0.5.6(tailwindcss@3.0.2):
+    resolution: {integrity: sha512-Fw+2BJ0tmAwK/w01tEFL5TiaJBX1NLT1/YbWgvm7ws3Qcn11kiXxzNTEQDMs5V3mQemhB56l3u0i9dwdzSQldA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
+    dependencies:
+      mini-svg-data-uri: 1.4.4
+      tailwindcss: 3.0.2(autoprefixer@10.4.14)(postcss@8.4.27)(ts-node@10.9.1)
+    dev: true
 
   /@tootallnate/once@1.1.2:
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -10005,6 +10024,11 @@ packages:
       schema-utils: 4.2.0
       webpack: 5.88.2(esbuild@0.18.17)
 
+  /mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
+    dev: true
+
   /minimalistic-assert@1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
 
@@ -11170,6 +11194,12 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /preline@1.9.0:
+    resolution: {integrity: sha512-zvOexsDBood9gBAQYSwz7iY8TaomtRD0/qxvCnJl3caq5pif6frl8Oe4b4DsxHHD3Clzl4I5RmVKTq9XjMvNJA==}
+    dependencies:
+      '@popperjs/core': 2.11.8
+    dev: true
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
