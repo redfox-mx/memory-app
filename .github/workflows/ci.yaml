@@ -4,12 +4,14 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
-  main:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -19,9 +21,11 @@ jobs:
       
       - uses: actions/setup-node@v3
         with:
+          node-version-file: '.nvmrc'
           cache: 'pnpm'
 
       - uses: nrwl/nx-set-shas@v3
+
       - name: Install dependencies
         run: pnpm install
       
@@ -33,3 +37,41 @@ jobs:
 
       - name: Build step
         run: npx nx affected -t build --parallel=3
+      
+      - name: Upload project
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: dist/memory/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: app
+          path: dist
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v7
+
+      - name: Set deployment branch
+        id: page-branch
+        shell: bash
+        run: |
+            echo "branch=$(echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/')" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Cloudflare Page
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 84be8452697fdfb6a844905b357a654f
+          projectName: memory-app
+          directory: dist
+          branch: ${{ steps.page-branch.outputs.branch }}
