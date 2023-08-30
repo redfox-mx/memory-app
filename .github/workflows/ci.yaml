@@ -65,8 +65,8 @@ jobs:
         id: page-branch
         shell: bash
         run: |
-            BRANCH = $(echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/')
-            echo "branch=${BRANCH}" >> "$GITHUB_OUTPUT"
+            echo "branch=${echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/'}"
+            echo "branch=${echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/'}" >> "$GITHUB_OUTPUT"
 
       - name: Get branch
         env:
