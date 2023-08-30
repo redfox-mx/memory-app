@@ -64,7 +64,9 @@ jobs:
       - name: Set deployment branch
         id: page-branch
         shell: bash
-        run: echo "branch=${${{ steps.branch-name.outputs.current_branch }}//\//-}" >> "$GITHUB_OUTPUT"
+        run: |
+            BRANCH = $(echo "${{ steps.branch-name.outputs.current_branch }}" | sed 's/\//-/')
+            echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
 
       - name: Get branch
         env:
