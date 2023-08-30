@@ -1,4 +1,4 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { GameServiceController } from './game.service'
 import { TestBed } from '@angular/core/testing'
 import { of } from 'rxjs'
@@ -16,7 +16,6 @@ const fakeCardsRepository = {
 
 describe('game controller', () => {
   let fixture: GameServiceController;
-  let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,7 +25,6 @@ describe('game controller', () => {
       ]
     })
     fixture = TestBed.inject(GameServiceController);
-    httpController = TestBed.inject(HttpTestingController);
   })
 
   it('should be defined', () => {
