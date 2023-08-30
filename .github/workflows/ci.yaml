@@ -66,6 +66,11 @@ jobs:
         shell: bash
         run: echo "branch=${${{ steps.branch-name.outputs.current_branch }}//\//-}" >> "$GITHUB_OUTPUT"
 
+      - name: Get branch
+        env:
+          SELECTED_COLOR: ${{ steps.page-branch.outputs.branch }}
+        run: echo "The selected color is $SELECTED_COLOR"
+
       - name: Publish to Cloudflare Page
         uses: cloudflare/pages-action@v1
         with:
