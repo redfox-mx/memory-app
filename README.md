@@ -2,6 +2,11 @@
 
 > App based on the popular game called Memory or Concentration. Pick one, and try not to forget.
 
+| Preview                       |
+|-------------------------------|
+| https://memory-app.pages.dev/ |
+
+
 ## How to run
 
 ```sh
