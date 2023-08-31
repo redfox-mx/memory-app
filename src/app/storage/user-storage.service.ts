@@ -12,7 +12,7 @@ const USER_STORE_KEYS = {
 export class UserStorage {
 
   constructor(@Inject(LocalStorage) private _storage: Storage) {
-    // in production environments this error must be handled
+    // SSR roduction environments must handle this error
     if(_storage === null) throw new LocalStorageNotFout('locall storage is not supported');
   }
 

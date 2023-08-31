@@ -4,12 +4,12 @@ import { Card } from './card'
 describe('Generate Board', () => {
   const cards = createCards(10);
 
-  it('should create a 2n board for a given cards', () => {
+  it('should create a 2n board for a given initial cards', () => {
     const board = generateBoard(cards);
     expect(board.length).toBe(cards.length * 2)
   })
 
-  it('should generate uniques id', () => {
+  it('should generate uniques id for every new card', () => {
     const board = generateBoard(cards);
     expect(hasUniqueId(board)).toBeTruthy();
   })
