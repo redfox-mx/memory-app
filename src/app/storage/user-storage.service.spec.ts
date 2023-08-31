@@ -25,7 +25,7 @@ describe('User Storage Service', () => {
     expect(userStorage.username).toBeNull();
   })
 
-  it('should keep username value', () => {
+  it('should keep track of username', () => {
     const userStorage = injector.get(UserStorage);
 
     userStorage.username = 'testusername'
