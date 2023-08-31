@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http'
-import { Inject, Injectable, InjectionToken, isDevMode } from '@angular/core'
+import { Inject, Injectable, InjectionToken, inject } from '@angular/core'
 import { map } from 'rxjs/operators'
 import { Card, DEFAULT_CARD_STATE } from '../card'
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 /**
  * Partial json response type
@@ -24,7 +25,13 @@ export interface PartialCardsResponse {
 }
 
 export function amountOfCardFactory() {
-  return isDevMode() ? 5 : 20;
+  const breakpointObserver = inject(BreakpointObserver);
+  const isSmallPhone = breakpointObserver.isMatched('(max-width: 426px)');
+  const isTablet = breakpointObserver.isMatched('(max-width: 768px)')
+  console.log(isSmallPhone);
+  return isSmallPhone ? 12
+    : isTablet ? 15
+    : 20;
 }
 
 /**
