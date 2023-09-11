@@ -3,7 +3,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 
 /**
  * Allow setup mat icons module
- * @param registry icon registry form icons services
+ * @param registry icon registry for icons services
  */
 export function bootstrapIcons(registry: MatIconRegistry) {
   registry.setDefaultFontSetClass('material-symbols-rounded')
