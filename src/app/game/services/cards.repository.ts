@@ -26,10 +26,11 @@ export interface PartialCardsResponse {
 
 export function amountOfCardFactory() {
   const breakpointObserver = inject(BreakpointObserver);
-  const isSmallPhone = breakpointObserver.isMatched('(max-width: 426px)');
+  const isPhone = breakpointObserver.isMatched('(max-width: 426px)');
   const isTablet = breakpointObserver.isMatched('(max-width: 768px)')
-  console.log(isSmallPhone);
-  return isSmallPhone ? 12
+
+  // Set amount of cards based on initial screen size since
+  return isPhone ? 12
     : isTablet ? 15
     : 20;
 }
@@ -37,7 +38,10 @@ export function amountOfCardFactory() {
 /**
  * Injection token for set amout of cards fetched by remote service
  *
- * **note:** Game board size is `2 * amoutOfCards`
+ * **note:** Game board size is:
+ * - 12 unique images for phone devices
+ * - 15 unique images for tablet devices
+ * - 20 unique images for desktop applications
  */
 export const AMOUNT_OF_CARDS_PROVIDER = new InjectionToken('AmountOfCard', { factory: amountOfCardFactory })
 

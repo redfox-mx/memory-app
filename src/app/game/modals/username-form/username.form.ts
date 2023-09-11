@@ -19,7 +19,7 @@ export class UsernameFormComponent {
 
   shouldClose() {
     const username = this.username.trim()
-    if(!username) return;
+    if(!username) return; // username must not be empty
 
     this.username = username;
     this.dialogRef.close(username)
