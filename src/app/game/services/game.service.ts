@@ -33,6 +33,8 @@ export class GameServiceController {
 
   public gameStarted = false;
 
+  private isOnReset = false
+
   public get isCompleted() {
     return this.gameStarted && this.matches === this.totalMatches;
   }
@@ -62,6 +64,8 @@ export class GameServiceController {
   }
 
   selectCard(source: Card){
+    if(this.isOnReset) return; // prevent selection when reset is handled (500ms)
+
     const card = this.board.find(findById(source));
     if(!card) return; // card does not exist
 
@@ -73,7 +77,11 @@ export class GameServiceController {
       this.match(source)
       this.currentMovement = INITIAL_MOVEMENT;
       this.cardSelected = undefined;
-      setTimeout(() => this.restoreBoard(), 500)
+      this.isOnReset = true;
+      setTimeout(() => {
+        this.restoreBoard()
+        this.isOnReset = false;
+      }, 500)
       return;
     }
 
