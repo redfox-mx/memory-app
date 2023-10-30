@@ -59,7 +59,7 @@ export class GameServiceController {
     this.restoreBoard();
   }
 
-  selectCard(source: Card){
+  selectCard(card: Card){
     if(this.isOnReset) return; // prevent selection when reset is handled (500ms)
 
     if(card.state !== DEFAULT_CARD_STATE) return; // selected and matched states must be skiped
