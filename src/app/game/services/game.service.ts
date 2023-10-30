@@ -11,10 +11,6 @@ export const COMPARE_MOVEMENT = 'compare' as const;
 export type MovementType =
   typeof INITIAL_MOVEMENT | typeof COMPARE_MOVEMENT;
 
-const findById =
-  (source: { id: unknown }) =>
-    <T>(target: { id: unknown } & T) => source.id === target.id;
-
 
 @Injectable({ providedIn: 'root' })
 export class GameServiceController {
@@ -63,18 +59,15 @@ export class GameServiceController {
     this.restoreBoard();
   }
 
-  selectCard(source: Card){
+  selectCard(card: Card){
     if(this.isOnReset) return; // prevent selection when reset is handled (500ms)
-
-    const card = this.board.find(findById(source));
-    if(!card) return; // card does not exist
 
     if(card.state !== DEFAULT_CARD_STATE) return; // selected and matched states must be skiped
     this.liveAnnouncer.announce(card.name + 'card selected');
     card.state = SELECTED_CARD_STATE;
 
     if(this.currentMovement === COMPARE_MOVEMENT) {
-      this.match(source)
+      this.match(card)
       this.currentMovement = INITIAL_MOVEMENT;
       this.cardSelected = undefined;
       this.isOnReset = true;
@@ -89,16 +82,14 @@ export class GameServiceController {
     this.currentMovement = COMPARE_MOVEMENT;
   }
 
-  match(source: Card) {
+  match(card: Card) {
     if(!this.cardSelected) return false;
-
-    const card = this.board.find(e => e.id === source.id);
 
     // 1. diferent names is not a match
     // 2. same card id is not a match
-    if(!card || this.cardSelected?.name !== card.name || this.cardSelected?.id === card.id) {
+    if(this.cardSelected?.name !== card.name || this.cardSelected?.id === card.id) {
       this.errors++;
-      this.liveAnnouncer.announce(this.cardSelected.name + 'card no match with ' + source.name + 'card');
+      this.liveAnnouncer.announce(this.cardSelected.name + 'card no match with ' + card.name + 'card');
       return false;
     }
 
