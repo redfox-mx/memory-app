@@ -29,6 +29,8 @@ export class GameServiceController {
 
   public gameStarted = false;
 
+  private isOnReset = false
+
   public get isCompleted() {
     return this.gameStarted && this.matches === this.totalMatches;
   }
@@ -57,7 +59,8 @@ export class GameServiceController {
     this.restoreBoard();
   }
 
-  selectCard(card: Card){
+  selectCard(source: Card){
+    if(this.isOnReset) return; // prevent selection when reset is handled (500ms)
 
     if(card.state !== DEFAULT_CARD_STATE) return; // selected and matched states must be skiped
     this.liveAnnouncer.announce(card.name + 'card selected');
@@ -67,7 +70,11 @@ export class GameServiceController {
       this.match(card)
       this.currentMovement = INITIAL_MOVEMENT;
       this.cardSelected = undefined;
-      setTimeout(() => this.restoreBoard(), 500)
+      this.isOnReset = true;
+      setTimeout(() => {
+        this.restoreBoard()
+        this.isOnReset = false;
+      }, 500)
       return;
     }
 
